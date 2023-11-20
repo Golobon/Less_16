@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tV"
+    <Button
+        android:id="@+id/but1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginTop="330dp"
-        android:layout_marginStart="110dp"
-        android:gravity="center"
-        android:textSize="45sp"/>
+        android:text="Act2">
+    </Button>
+    <Button
+        android:id="@+id/but2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Act3" />
 </LinearLayout>

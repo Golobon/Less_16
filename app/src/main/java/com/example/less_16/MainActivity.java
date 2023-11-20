@@ -1,68 +1,69 @@
 package com.example.less_16;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuProvider;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.VibrationAttributes;
-import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    TextView tV;
-    final int ALPHA = 1;
-    final int ROTATE = 2;
-    final int SCALE = 3;
-    final int TRANS = 4;
-    final int COMBO = 5;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    Button b2;
+    Button b1;
+    Log log;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("MainActivityCreate", "StateDebug");
         setContentView(R.layout.activity_main);
-        tV = findViewById(R.id.tV);
-        registerForContextMenu(tV);
+        b1 = findViewById(R.id.but1);
+        b1.setOnClickListener(this);
+        b2 = findViewById(R.id.but2);
+        b2.setOnClickListener(this);
     }
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, ALPHA, 0, "Alpha");
-        menu.add(0, ROTATE, 0, "Rotate");
-        menu.add(0, SCALE, 0, "Scale");
-        menu.add(0, TRANS, 0, "Trans");
-        menu.add(0, COMBO, 0, "Combo");
+    protected void onStart() {
+        super.onStart();
+        Log.d("MainActivityStart", "StateDebug");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("MainActivityResume", "StateDebug");
     }
 
     @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        int res = item.getItemId();
-        Animation anim = null;
-        if (res == ALPHA) anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        if (res == ROTATE) anim = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        if (res == SCALE) anim = AnimationUtils.loadAnimation(this, R.anim.scale);
-        if (res == TRANS) anim = AnimationUtils.loadAnimation(this, R.anim.trans);
-        if (res == COMBO) anim = AnimationUtils.loadAnimation(this, R.anim.combo);
-        tV.startAnimation(anim);
-        return super.onContextItemSelected(item);
+    protected void onPause() {
+        super.onPause();
+        Log.d("MainActivityPause", "StateDebug");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("MainActivityRestart", "StateDebug");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("MainActivityStop", "StateDebug");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("MainActivityDestroy", "StateDebug");
+    }
+    @Override
+    public void onClick(View v) {
+        Intent intent = null;
+        if (v.equals(b1)) {
+            intent = new Intent("ru.golobon.intent.action.showtime");
+        } else if (v.equals(b2)) {
+            intent = new Intent("ru.golobon.intent.action.showdate");
+        }
+        startActivity(intent);
     }
 }
